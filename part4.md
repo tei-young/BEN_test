@@ -14,29 +14,35 @@ Reasons for selection:
 * GUI interface makes it easier to learn
 
 ## Test Cases
-### Case 1: Login Response Time Test
-* Number of Threads: 100 concurrent users (fixed number)
+### Case 1: Performance Test
+* Number of Threads: Start with 100 users(Gradually increase to 1,000 users)
 * Steps:
-  * Login with test account
+  * Basic login/logout operations
   * Measure response time
-* Goal: Check if response time stays under 2 seconds
+* Goal: Baseline performance metrics
 
-### Case 2: Gradual Load Test for Sign Up
+### Case 2: Peak Load Test
 * Number of Threads: 
-  * Start with 10 users
-  * Add 10 users every 2 minutes
-  * Maximum 200 users
+  * Start with 1,000 users
+  * Increase by 1,000 every 5 minutes
+  * Final target: 10,000 users
 * Steps:
-  * Create new accounts with test data
-  * Record success/failure rates
-* Goal: Find the point where system starts showing stress
+  * 70% users perform login
+  * 30% users perform signup
+* Goal: Verify system handles required 10,000 concurrent users
 
-### Case 3: Stability Test
-* Number of Threads: 50 concurrent users (fixed number)
+### Case 3: Extended Peak Load Test(peak time)
+* Number of Threads:
+  * Start with 1,000 users
+  * Increase by 2,000 every 10 minutes
+  * Final target: 10,000 users maintained for 30 minutes(peak time)
 * Steps:
-  * Alternate between login and logout
-  * 30 second pause between actions
-* Goal: Check if system remains stable under consistent moderate load
+   * Mix of operations:
+    * 40% login
+    * 40% signup
+    * 20% repeated login-logout
+  * Record error patterns at each load level
+* Goal: Analyze system behavior under various peak time
 
 ## Metrics
 * Average Response Time
